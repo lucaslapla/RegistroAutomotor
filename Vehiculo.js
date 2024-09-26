@@ -16,6 +16,7 @@ var Vehiculo = /** @class */ (function () {
             this.cilindrada = cilindrada;
         }
     }
+    //aqui los GET
     Vehiculo.prototype.gettipoVehiculo = function () {
         return this.tipoVehiculo;
     };
@@ -37,9 +38,27 @@ var Vehiculo = /** @class */ (function () {
     Vehiculo.prototype.getcilindrada = function () {
         return this.cilindrada;
     };
-    Vehiculo.prototype.vajaVehiculo = function () {
+    //Aqui los SET
+    Vehiculo.prototype.settipoVehiculo = function (tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     };
-    Vehiculo.prototype.modificarVehiculo = function () {
+    Vehiculo.prototype.setmarca = function (marca) {
+        this.marca = marca;
+    };
+    Vehiculo.prototype.setmodelo = function (modelo) {
+        this.modelo = modelo;
+    };
+    Vehiculo.prototype.setpatente = function (patente) {
+        this.patente = patente;
+    };
+    Vehiculo.prototype.setnroMotor = function (nroMotor) {
+        this.nroMotor = nroMotor;
+    };
+    Vehiculo.prototype.setnroChasis = function (nroChasis) {
+        this.nroChasis = nroChasis;
+    };
+    Vehiculo.prototype.setcilindrada = function (cilindrada) {
+        this.cilindrada = cilindrada;
     };
     return Vehiculo;
 }());

@@ -19,6 +19,8 @@ export class Vehiculo {
         }else{  this.cilindrada = cilindrada;
         }
     }
+
+    //aqui los GET
     gettipoVehiculo(): string {
         return this.tipoVehiculo;
     }
@@ -47,12 +49,34 @@ export class Vehiculo {
         return this.cilindrada;
     }
 
-    vajaVehiculo():void{
+    //Aqui los SET
 
+    settipoVehiculo(tipoVehiculo:string): void {
+        this.tipoVehiculo=tipoVehiculo;
+    }
+    
+    setmarca(marca:string): void {
+        this.marca=marca;
     }
 
-    modificarVehiculo():void{
-        
+    setmodelo(modelo:string): void {
+        this.modelo=modelo;
+    }
+
+    setpatente(patente:string): void {
+        this.patente=patente;
+    }
+
+    setnroMotor(nroMotor:string): void {
+        this.nroMotor=nroMotor;
+    }
+
+    setnroChasis(nroChasis:string): void {
+        this.nroChasis=nroChasis;
+    }    
+
+    setcilindrada(cilindrada:number): void {
+        this.cilindrada=cilindrada;
     }
 
 }
