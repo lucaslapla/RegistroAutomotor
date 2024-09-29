@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Vehiculo_1 = require("./Vehiculo");
+var rsl = require("readline-sync");
 var RegistroAutomotor = /** @class */ (function () {
     function RegistroAutomotor(registrarVehiculo) {
         this.registrarVehiculo = registrarVehiculo;
@@ -20,6 +21,17 @@ var RegistroAutomotor = /** @class */ (function () {
             console.log("el vehiculo ya esta en la lista");
         }
     };
+    RegistroAutomotor.prototype.eliminarVehiculo = function (patenteAEliminar) {
+        this.registrarVehiculo = this.registrarVehiculo.filter(function (vehiculo) { return vehiculo.getpatente() !== patenteAEliminar; });
+    };
+    RegistroAutomotor.prototype.ModificarVehiculo = function (vehiculoAModificar) {
+        console.log("Del siguiente vehiculo solo podra modificar el Motor");
+        console.log(vehiculoAModificar);
+        var nuevoMotor = rsl.question("Ingrese nuevo numero de motor :");
+        console.log(nuevoMotor);
+        vehiculoAModificar.setnroMotor(nuevoMotor);
+        console.log(vehiculoAModificar);
+    };
     return RegistroAutomotor;
 }());
 // Crear Vehiculos
@@ -33,11 +45,16 @@ var vehiculo6 = new Vehiculo_1.Vehiculo("MOTO", "Honda", "BR", "AD 789 DE", "MOT
 var registrarVehiculo = new RegistroAutomotor([vehiculo1, vehiculo2, vehiculo3, vehiculo4, vehiculo5, vehiculo6]);
 //Ver lista de Vehiculos
 console.log(registrarVehiculo);
+console.log("=======================Lista Original===============================");
 //Agrego Vehiculo y lo muestro
-registrarVehiculo.nuevoVehiculo("Camoin", "Volvo", "Standart", "OPL 234", "mot75933y924", "ch37429j829347", 5000);
+registrarVehiculo.nuevoVehiculo("Camion", "Volvo", "Standart", "OPL 234", "mot75933y924", "ch37429j829347", 5000);
 console.log(registrarVehiculo);
+console.log("==========================Se Agrega Nuevo Camion En ultimo Lugar ============================");
 //Modificar Vehiculo
-//registrarVehiculo.modificarVehiculo()
+registrarVehiculo.ModificarVehiculo(vehiculo1);
+console.log(registrarVehiculo);
+console.log("==========================Se Modifico numero de motor del Segundo ============================");
 //Eliminar Vehiculo y lo muestro
-//registrarVehiculo.eliminarVehiculo("Camoin","Volvo","Standart","OPL 234","mot75933y924","ch37429j829347",5000);
-//console.log(registrarVehiculo);
+registrarVehiculo.eliminarVehiculo("OPL 234"); //elimino el camnion agegado por metodo
+console.log(registrarVehiculo);
+console.log("==========================Se elimina el Camion ============================");

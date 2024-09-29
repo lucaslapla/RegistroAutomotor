@@ -1,4 +1,7 @@
-import { Vehiculo } from "./Vehiculo";
+ 
+
+import { Vehiculo } from "./Vehiculo"
+import   * as rsl from "readline-sync"
 
 class RegistroAutomotor {
     private registrarVehiculo: Vehiculo[];
@@ -17,28 +20,26 @@ class RegistroAutomotor {
 
     nuevoVehiculo(tipoVehiculo:string, marca:string, modelo:string, patente:string, nroMotor:string, nroChasis:string, cilindrada:number):void{
         let agregarVehiculo:Vehiculo=new Vehiculo (tipoVehiculo, marca, modelo, patente, nroMotor, nroChasis, cilindrada);
-        if(!this.registrarVehiculo.some (lib=> lib.getnroChasis()==nroChasis && lib.getnroMotor()==nroMotor )){// miro si el chasis o motor estan repetidos.
+        if(!this.registrarVehiculo.some (
+            lib=> lib.getnroChasis()==nroChasis && lib.getnroMotor()==nroMotor )){// miro si el chasis o motor estan repetidos.
             this.registrarVehiculo.push(agregarVehiculo);
         }else{
             console.log("el vehiculo ya esta en la lista");
         }
     }
 
-   /* eliminarVehiculo(vehiculoAEliminar:Vehiculo):void{
-        if(vehiculoAEliminar!=undefined&&this.registrarVehiculo.includes(vehiculoAEliminar)){//veo que no sea indefinido y que este en la lista
-            let posVehiculo:number =this.registrarVehiculo.indexOf(vehiculoAEliminar);//busco la posicion
-            this.registrarVehiculo.slice(posVehiculo,1);// se retira de la lista
-        }
-    }*/
-    /*
-    modificarVehiculo(vehiculoAModificar:Vehiculo):void{
-        if(vehiculoAModificar!=undefined&&this.registrarVehiculo.includes(vehiculoAModificar)){//veo que no sea indefinido y que este en la lista
-            let posVehiculo:number =this.registrarVehiculo.indexOf(vehiculoAModificar);//busco la posicion
-
-            
-        }
-    }*/
-
+    eliminarVehiculo(patenteAEliminar:string):void{
+        this.registrarVehiculo = this.registrarVehiculo.filter(vehiculo => vehiculo.getpatente() !== patenteAEliminar);
+    }
+    
+    ModificarVehiculo(vehiculoAModificar:Vehiculo):void{// Elijo el Motor Pq el resto me parece dificil de Modificar :)
+        console.log("Del siguiente vehiculo solo podra modificar el Motor");
+        console.log(vehiculoAModificar);
+        let nuevoMotor:string= rsl.question("Ingrese nuevo numero de motor :");
+        console.log(nuevoMotor)
+        vehiculoAModificar.setnroMotor(nuevoMotor);
+        console.log(vehiculoAModificar);
+    }
 
 }
 
@@ -56,15 +57,18 @@ const registrarVehiculo= new RegistroAutomotor ([vehiculo1, vehiculo2,vehiculo3,
 
 //Ver lista de Vehiculos
 console.log(registrarVehiculo);
+console.log("=======================Lista Original===============================");
 
 //Agrego Vehiculo y lo muestro
-registrarVehiculo.nuevoVehiculo("Camoin","Volvo","Standart","OPL 234","mot75933y924","ch37429j829347",5000);
+registrarVehiculo.nuevoVehiculo("Camion","Volvo","Standart","OPL 234","mot75933y924","ch37429j829347",5000);
 console.log(registrarVehiculo);
+console.log("==========================Se Agrega Nuevo Camion En ultimo Lugar ============================");
 
 //Modificar Vehiculo
-//registrarVehiculo.modificarVehiculo()
+registrarVehiculo.ModificarVehiculo(vehiculo1);
+console.log("==========================Se Modifico numero de motor del Segundo ============================");
 
 //Eliminar Vehiculo y lo muestro
-//registrarVehiculo.eliminarVehiculo("Camoin","Volvo","Standart","OPL 234","mot75933y924","ch37429j829347",5000);
-//console.log(registrarVehiculo);
-
+registrarVehiculo.eliminarVehiculo("OPL 234");//elimino el camnion agegado por metodo
+console.log(registrarVehiculo);
+console.log("==========================Se elimina el Camion ============================");
